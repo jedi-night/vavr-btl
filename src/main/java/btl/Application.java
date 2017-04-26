@@ -1,6 +1,7 @@
 package btl;
 
 import com.fasterxml.jackson.databind.Module;
+import javaslang.jackson.datatype.JavaslangModule;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,9 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import java.util.Arrays;
 
-@EnableWebMvc
 @SpringBootApplication
-public class Application extends WebMvcConfigurerAdapter {
+public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -35,15 +35,8 @@ public class Application extends WebMvcConfigurerAdapter {
         };
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/images/**")
-                .addResourceLocations("/images/");
-    }
-
     @Bean
     public Module jacksonBuilder() {
-        return new VavrModule();
+        return new JavaslangModule();
     }
 }
