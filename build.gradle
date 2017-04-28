@@ -27,6 +27,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    // lombok
+    compile "org.projectlombok:lombok:1.16.16"
     // vavr
     compile "io.javaslang:javaslang:2.0.5"
     compile("io.javaslang:javaslang-jackson:2.0.5")

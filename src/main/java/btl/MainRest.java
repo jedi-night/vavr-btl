@@ -1,33 +1,35 @@
 package btl;
 
+import btl.enums.Agence;
+import btl.services.PersonneService;
 import javaslang.collection.List;
+import javaslang.collection.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/documents")
+@RequestMapping("/personnes")
 public final class MainRest {
 
-    private static final List<String> VALUES = List.of("Manon", "Vincent", "Jean-Baptiste", "Sébastien");
-    private static final java.util.List<String> VALUES_JAVA_8 = VALUES.toJavaList();
+    @Autowired PersonneService personneService;
 
-    @RequestMapping(value="vavr", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<String> documents() {
-        return VALUES.filter(el -> el.contains("i"));
-    }
-
-    @RequestMapping(value="java", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public java.util.List<String> documentsOld() {
-        return VALUES_JAVA_8
-                .stream()
-                .filter(el -> el.contains("i"))
-                .collect(Collectors.toList());
-    }
+//    @RequestMapping(value="vavr/{prenomPersonne}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public List<String> documents(@PathVariable("prenomPersonne") final String prenomPersonne) {
+//        return personneService.getAllPersonnesByAgence(Agence.NETAPSYS_BRETAGNE.getCode()).transform(tuple2s -> tuple2s.);
+//    }
+//
+//    @RequestMapping(value="java/{prenomPersonne}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public java.util.List<String> documentsOld(@PathVariable("prenomPersonne") final String prenomPersonne) {
+//        return VALUES_JAVA_8
+//                .entrySet()
+//                .stream()
+//                .filter(el -> el.getKey())
+//                .map(el -> el.getValue().getNom())
+//                .collect(Collectors.toList());
+//    }
 }
