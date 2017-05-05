@@ -3,7 +3,8 @@ package btl.enums;
 public enum Agence {
 
     NETAPSYS_BRETAGNE(1,"Netapsys Bretagne"),
-    NETAPSYS_PARIS(2,"Netapsys Conseil");
+    NETAPSYS_PARIS(2,"Netapsys Conseil"),
+    SODIFRANCE_RENNES(3,"Sodifrance Rennes");
 
     private int code;
     private String libelle;
