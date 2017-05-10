@@ -1,16 +1,17 @@
 package btl;
 
 import btl.enums.Agence;
-import javaslang.*;
-import javaslang.control.Option;
+import javaslang.Tuple;
+import javaslang.Tuple2;
+import javaslang.Tuple3;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.logging.Logger;
 
-public class MainRestTest {
+public class TuppleTest {
 
-    private static final Logger LOGGER = Logger.getLogger(MainRestTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TuppleTest.class.getName());
 
     @Before
     public void setup() {
@@ -51,47 +52,5 @@ public class MainRestTest {
         );
 
         System.out.println(transform.toString());
-    }
-
-    @Test
-    public void functions() {
-
-        // ***********
-        // Composition
-        // ***********
-
-        Function1<Integer, Integer> plusOne = a -> a + 1;
-        Function1<Integer, Integer> multiplyByTwo = a -> a * 2;
-
-        // soit comme ça
-        Function1<Integer, Integer> add1AndMultiplyBy2 = plusOne.andThen(multiplyByTwo);
-
-        // soit en compose
-        Function1<Integer, Integer> add1AndMultiplyBy2Bis = multiplyByTwo.compose(plusOne);
-
-        Integer number = 5;
-        Integer result = add1AndMultiplyBy2Bis.apply(number);
-
-        System.out.println("(" + number + " + 1) * 2 = " + result);
-
-
-        // ***********
-        // Lifting
-        // ***********
-        Function2<Integer, Integer, Integer> divide = (a, b) -> a / b;
-
-        Function2<Integer, Integer, Option<Integer>> safeDivide = Function2.lift(divide);
-
-
-        // = None
-        Option<Integer> i1 = safeDivide.apply(1, 0);
-
-        System.out.println("1 / 0 = " + i1.getOrElse(-1));
-
-        // = Some(2)
-        Option<Integer> i2 = safeDivide.apply(4, 2);
-
-        System.out.println("4 / 2 = " + i2.getOrElse(-1));
-
     }
 }
