@@ -1,9 +1,6 @@
 package btl;
 
-import javaslang.Function1;
-import javaslang.Function2;
-import javaslang.Function3;
-import javaslang.Function5;
+import javaslang.*;
 import javaslang.control.Option;
 import org.junit.Before;
 import org.junit.Test;
