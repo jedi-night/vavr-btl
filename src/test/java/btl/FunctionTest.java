@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import java.util.logging.Logger;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class FunctionTest {
 
     private static final Logger LOGGER = Logger.getLogger(FunctionTest.class.getName());
@@ -92,7 +94,7 @@ public class FunctionTest {
 
         System.out.println("2 + 4 = 17 => " + result);
 
-        // Plus clair ici
+        // Plus clair ici (normalement)
         Function3<Integer, Integer, Integer, Integer> sumOf3numbers = (a, b, c) -> a + b + c;
         final Function1<Integer, Function1<Integer, Integer>> add2Bis = sumOf3numbers.curried().apply(2);
 
@@ -100,5 +102,19 @@ public class FunctionTest {
 
         System.out.println("2 + 4 + 3 = 9 => " + result);
 
+
+        // ***********
+        // Memoization
+        //
+        // Sorte de cache
+        // ***********
+        System.out.println("\n***** Memoization *****\n");
+
+        Function0<Double> hashCache = Function0.of(Math::random).memoized();
+
+        double randomValue1 = hashCache.apply();
+        double randomValue2 = hashCache.apply();
+
+        assertThat(randomValue1).isEqualTo(randomValue2);
     }
 }
