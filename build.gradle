@@ -49,5 +49,5 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE")
     // end::actuator[]
     testCompile("junit:junit")
-    testCompile 'org.assertj:assertj-core:3.7.0'
+    testCompile('org.assertj:assertj-core:3.7.0')
 }
