@@ -16,17 +16,17 @@ public final class ApiRest {
 
     @Autowired PersonneService personneService;
 
-    @RequestMapping(value = "api", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "api", method = RequestMethod.GET)
     @ResponseBody
-    public String documents() {
-        return "connection OK";
+    public String documents(@RequestParam("ticket") String ticket) {
+        return "Authentification via token effectué (" + ticket + ")";
     }
 
     @ResponseStatus(HttpStatus.SEE_OTHER)
     @ResponseBody
-    @RequestMapping(value = "api/{idu}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "authentification/{idu}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> redirectToExternalUrl(@PathVariable("idu") final String idu) throws URISyntaxException {
-        URI cas = new URI("https://authentification-pp.ganpatrimoine.fr/cas/login?service=https://iservices-vie-pp.ganpatrimoine.fr/api&idu=" + idu);
+        URI cas = new URI("http://localhost:3000/cas/login?service=http://localhost:80/api&idu=" + idu);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(cas);
         httpHeaders.setOrigin("http://localhost:80/api");
