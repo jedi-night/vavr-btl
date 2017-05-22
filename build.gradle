@@ -36,6 +36,8 @@ dependencies {
     // vavr
     compile "io.javaslang:javaslang:2.0.5"
     compile("io.javaslang:javaslang-jackson:2.0.5")
+    compile("io.javaslang:javaslang-test:2.0.5")
+
     // binding
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.8.1'
     // jetty
