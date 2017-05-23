@@ -1,6 +1,6 @@
 package btl.services;
 
-import btl.Personne;
+import btl.models.Personne;
 import btl.enums.Agence;
 import javaslang.collection.HashMap;
 import javaslang.collection.Map;
